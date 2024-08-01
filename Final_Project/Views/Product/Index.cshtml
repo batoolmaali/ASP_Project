@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Final_Project.ViewModels.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="@Url.Content("~/" + item.ImagePath)"
+                         class="card-img-top"
+                         alt="Card image cap" style="height:190px">
+                    <div class="card-body">
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        <p>Price: @Html.DisplayFor(modelItem => item.Price)</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Final_Project.ViewModels.CategoryViewModel>
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Categories";
+}
+
+<div class="page-content page-container" id="page-content">
+
+
+
+    <div class="row container d-flex justify-content-center mt-0">
+        <div class="container mb-4">
+            <a asp-action="CreateCat" asp-controller="Admin" class="btn btn-primary">Create New</a>
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card ">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">All Categories</h5>
+                    <hr />
+                    <p class="card-description">
+
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                   <th>
+                                        Actions
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                      
+                                        <td>
+                               <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-@item.Id">
+                                                <i class="fas fa-trash-alt delete-icon"></i>
+
+                               </a>
+
+                                            <div class="modal" id="exampleModal-@item.Id">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Modal title</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true"></span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you Sure Delete Item @item.Name ?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form asp-action="DeleteCat" asp-route-id="@item.Id" method="post">
+                                                                @Html.AntiForgeryToken()
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <a type="button" class="btn btn-primary">
+                                                <i class="fas fa-edit edit-icon"></i>
+                                            </a>
+                                          
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

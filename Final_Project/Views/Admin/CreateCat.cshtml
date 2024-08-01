@@ -1,0 +1,32 @@
+﻿@model Final_Project.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "CreateCat";
+    Layout = "_AdminLayout";
+}
+
+
+
+<div class="card p-4 bg-light">
+    <form asp-controller="Admin" asp-action="Create">
+        <h5>Add Category</h5>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group pb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" type="Text" class="form-control" placeholder="">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+      
+        <div class="form-group ">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
